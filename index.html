@@ -415,13 +415,9 @@
     <div class="max-w-xl relative z-10">
 
       <!-- Мобильное фото первого экрана (на десктопе фото справа, в .hero-circle) -->
-      <div class="hero-mobile-photo lg:hidden" aria-hidden="true">
-        <!-- TODO-OWNER: то же фото, что и в .hero-circle ниже. Шаблон:
-        <img src="images/hero.jpg" alt="Интерьер клиники «Сфера Преображения»" width="800" height="400" fetchpriority="high" decoding="async">
-        -->
-        <div class="w-full h-full flex items-center justify-center" style="opacity:.4;">
-          <div class="font-display text-6xl font-light text-[var(--gold-dark)]">S</div>
-        </div>
+<div class="hero-mobile-photo lg:hidden">
+  <img src="images/hero.jpg" alt="Интерьер клиники «Сфера Преображения»" width="800" height="400" fetchpriority="high" decoding="async">
+</div>
       </div>
 
       <h1 id="hero-title" class="lg:mt-16 font-display text-5xl sm:text-6xl lg:text-7xl font-light leading-none mb-8 reveal reveal-delay-1" style="letter-spacing:-0.01em;">
@@ -461,13 +457,9 @@
        <img src="images/hero.jpg" alt="Спокойный интерьер клиники косметологии" width="1400" height="1200" fetchpriority="high" decoding="async">
        (фото выше сгиба — БЕЗ loading="lazy")
   -->
-  <div class="hero-circle hidden lg:block" aria-hidden="true">
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#EFE6D9 0%,#E0D0BE 50%,#D4C4AF 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:60px;">
-      <div style="text-align:center;opacity:0.4;">
-        <div class="font-display text-7xl font-light text-[var(--gold-dark)]">S</div>
-        <div style="width:1px;height:80px;background:var(--gold-light);margin:12px auto;"></div>
-        <div class="font-display text-base font-light tracking-widest text-[var(--gold-dark)]" style="letter-spacing:0.3em;">СФЕРА</div>
-      </div>
+<div class="hero-circle hidden lg:block">
+  <img src="images/hero.jpg" alt="Интерьер клиники «Сфера Преображения»" width="1400" height="1200" fetchpriority="high" decoding="async">
+</div>
     </div>
   </div>
 </section>
@@ -502,11 +494,9 @@
            <img src="images/about-cabinet.jpg" alt="Процедурный кабинет клиники «Сфера Преображения»" width="1000" height="1250" loading="lazy" decoding="async">
       -->
       <figure class="reveal reveal-delay-2">
-        <div class="photo-slot" style="aspect-ratio:4/5;">
-          <div class="photo-slot-note">
-            <div class="font-display text-6xl font-light mb-3" aria-hidden="true">✦</div>
-            Здесь будет фотография кабинета или интерьера клиники
-          </div>
+<div class="photo-slot" style="aspect-ratio:4/5;">
+  <img src="images/about.jpg" alt="Процедурный кабинет клиники" width="1000" height="1250" loading="lazy" decoding="async">
+</div>
         </div>
       </figure>
     </div>
@@ -610,9 +600,9 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <article class="specialist-card reveal">
-        <div class="photo-slot specialist-img" role="img" aria-label="Здесь будет портрет специалиста">
-          <div class="font-display text-8xl font-light text-[var(--gold-dark)]" style="opacity:.35;" aria-hidden="true">АМ</div>
-        </div>
+<div class="photo-slot specialist-img">
+  <img src="images/doctor-1.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+</div>
         <div class="p-8">
           <h3 class="font-display text-2xl font-light mb-1">Анна Михайловна</h3>
           <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог-дерматолог</div>
@@ -626,9 +616,9 @@
       </article>
 
       <article class="specialist-card reveal reveal-delay-1">
-        <div class="photo-slot specialist-img" style="background:linear-gradient(135deg,#E8DDD0,#D8CFC4);" role="img" aria-label="Здесь будет портрет специалиста">
-          <div class="font-display text-8xl font-light text-[var(--gold-dark)]" style="opacity:.35;" aria-hidden="true">ЕС</div>
-        </div>
+<div class="photo-slot specialist-img">
+  <img src="images/doctor-2.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+</div>
         <div class="p-8">
           <h3 class="font-display text-2xl font-light mb-1">Елена Сергеевна</h3>
           <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог-эстетист</div>
@@ -642,9 +632,9 @@
       </article>
 
       <article class="specialist-card reveal reveal-delay-2">
-        <div class="photo-slot specialist-img" style="background:linear-gradient(135deg,#EDE5DA,#DDD0C0);" role="img" aria-label="Здесь будет портрет специалиста">
-          <div class="font-display text-8xl font-light text-[var(--gold-dark)]" style="opacity:.35;" aria-hidden="true">ОВ</div>
-        </div>
+<div class="photo-slot specialist-img">
+  <img src="images/doctor-3.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+</div>
         <div class="p-8">
           <h3 class="font-display text-2xl font-light mb-1">Ольга Витальевна</h3>
           <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог</div>
@@ -678,11 +668,11 @@
     <div class="reveal">
       <div id="gallery" class="gallery-scroller" role="region" aria-label="Галерея работ клиники. Прокручивайте стрелками влево и вправо" tabindex="0">
         <ul style="display:contents;list-style:none;">
-          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Контурная пластика губ</figcaption></figure></li>
-          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Ботулинотерапия</figcaption></figure></li>
-          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Биоревитализация</figcaption></figure></li>
-          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Чистка лица</figcaption></figure></li>
-          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Фотоомоложение</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><img src="images/result-1.jpg" alt="Описание снимка" width="600" height="800" loading="lazy" decoding="async"><figcaption class="ba-caption">Контурная пластика губ</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><img src="images/result-2.jpg" alt="Описание снимка" width="600" height="800" loading="lazy" decoding="async"><figcaption class="ba-caption">Ботулинотерапия</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><img src="images/result-3.jpg" alt="Описание снимка" width="600" height="800" loading="lazy" decoding="async"><figcaption class="ba-caption">Биоревитализация</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><img src="images/result-4.jpg" alt="Описание снимка" width="600" height="800" loading="lazy" decoding="async"><figcaption class="ba-caption">Чистка лица</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><img src="images/result-5.jpg" alt="Описание снимка" width="600" height="800" loading="lazy" decoding="async"><figcaption class="ba-caption">Фотоомоложение</figcaption></figure></li>
         </ul>
       </div>
 
