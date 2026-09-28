@@ -591,14 +591,62 @@
       <div class="gold-line mt-6 reveal reveal-delay-2"></div>
     </div>
 
-    <div class="max-w-3xl mx-auto">
-      <article class="review-card reveal text-center">
-        <div class="section-label justify-center mb-5">Главный врач клиники</div>
-        <h3 class="font-display text-3xl sm:text-4xl font-light mb-3">Алёна Александровна Булгакова</h3>
-        <p class="text-[var(--gold-text)] text-sm font-medium mb-5">Врач-дерматолог, косметолог</p>
-        <p class="text-[var(--text-soft)] font-light leading-relaxed mb-7">Информацию о специалистах, их направлениях и расписании приёма уточняйте у клиники.</p>
-        <a href="tel:+79130237945" class="btn-outline text-[12px]">Уточнить и записаться</a>
+    <!-- TODO-OWNER: имена, должности и направления ниже перенесены из исходного макета и могут быть демонстрационными.
+         Проверьте их, добавьте реальную квалификацию (образование, сертификаты, стаж — только подтверждённый).
+         Фото врачей: ТОЛЬКО настоящие портреты сотрудников с их согласием. Стоковые лица под именами врачей ставить нельзя.
+         Шаблон внутри .specialist-img:
+         <img src="images/doctor-1.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+    -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <article class="specialist-card reveal">
+<div class="photo-slot specialist-img">
+  <img src="doctor-1.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+</div>
+        <div class="p-8">
+          <h3 class="font-display text-2xl font-light mb-1">Анна Михайловна</h3>
+          <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог-дерматолог</div>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed mb-6">Об образовании, квалификации и опыте специалиста уточняйте у клиники при записи.</p>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Инъекционная косметология</span>
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Аппаратная терапия</span>
+          </div>
+          <a href="#contacts" class="btn-outline w-full text-center block text-[12px]" aria-label="Записаться к специалисту: Анна Михайловна">Записаться</a>
+        </div>
       </article>
+
+      <article class="specialist-card reveal reveal-delay-1">
+<div class="photo-slot specialist-img">
+  <img src="doctor-2.jpeg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+</div>
+        <div class="p-8">
+          <h3 class="font-display text-2xl font-light mb-1">Елена Сергеевна</h3>
+          <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог-эстетист</div>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed mb-6">Об образовании, квалификации и опыте специалиста уточняйте у клиники при записи.</p>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Биоревитализация</span>
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Уходовые программы</span>
+          </div>
+          <a href="#contacts" class="btn-outline w-full text-center block text-[12px]" aria-label="Записаться к специалисту: Елена Сергеевна">Записаться</a>
+        </div>
+      </article>
+
+      <article class="specialist-card reveal reveal-delay-2">
+<div class="photo-slot specialist-img">
+  <img src="doctor-3.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+</div>
+        <div class="p-8">
+          <h3 class="font-display text-2xl font-light mb-1">Ольга Витальевна</h3>
+          <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог</div>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed mb-6">Об образовании, квалификации и опыте специалиста уточняйте у клиники при записи.</p>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Фотоомоложение</span>
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Аппаратные методики</span>
+          </div>
+          <a href="#contacts" class="btn-outline w-full text-center block text-[12px]" aria-label="Записаться к специалисту: Ольга Витальевна">Записаться</a>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -1160,93 +1208,4 @@
     name(v) {
       v = v.trim();
       if (!v) return 'Укажите имя.';
-      if (!/^[\p{L}][\p{L}\s'’.-]{1,59}$/u.test(v)) return 'Введите имя буквами, не короче двух символов.';
-      return '';
-    },
-    phone(v) {
-      const d = v.replace(/\D/g, '');
-      if (!d) return 'Укажите номер телефона.';
-      if (!(d.length === 10 || (d.length === 11 && (d[0] === '7' || d[0] === '8')))) return 'Введите номер полностью, например +7 900 123-45-67.';
-      return '';
-    },
-    consent(_, el) { return el.checked ? '' : 'Для отправки необходимо согласие на обработку данных.'; }
-  };
-
-  function setFieldError(key, msg) {
-    const { el, err } = fields[key];
-    if (msg) { err.textContent = msg; err.hidden = false; el.setAttribute('aria-invalid', 'true'); }
-    else { err.textContent = ''; err.hidden = true; el.removeAttribute('aria-invalid'); }
-  }
-  function validateAll() {
-    let firstBad = null;
-    for (const key of Object.keys(fields)) {
-      const { el } = fields[key];
-      const msg = validators[key](el.value, el);
-      setFieldError(key, msg);
-      if (msg && !firstBad) firstBad = el;
-    }
-    return firstBad;
-  }
-  Object.keys(fields).forEach(key => {
-    const { el } = fields[key];
-    const recheck = () => { if (el.getAttribute('aria-invalid') === 'true') setFieldError(key, validators[key](el.value, el)); };
-    el.addEventListener('input', recheck);
-    el.addEventListener('change', recheck);
-  });
-
-  function showStatus(type, text) {
-    statusBox.className = 'form-status mt-5 ' + type;
-    statusBox.textContent = text;
-    statusBox.hidden = false;
-  }
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    statusBox.hidden = true;
-
-    const bad = validateAll();
-    if (bad) { showStatus('error', 'Проверьте выделенные поля.'); bad.focus(); return; }
-
-    // Ловушка для ботов: тихо прерываем
-    if (form.elements.website && form.elements.website.value) return;
-
-    // Обработчик не подключён: ничего не отправляем и честно об этом говорим. Данные остаются в форме.
-    if (!SITE_CONFIG.formEndpoint) {
-      showStatus('info', 'Онлайн-запись пока не подключена, поэтому заявка не отправлена. Свяжитесь с клиникой по контактам на этой странице.');
-      statusBox.focus();
-      return;
-    }
-
-    const originalLabel = submitBtn.textContent;
-    submitBtn.disabled = true; submitBtn.setAttribute('aria-busy', 'true'); submitBtn.textContent = 'Отправляем…';
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 15000);
-    try {
-      const res = await fetch(SITE_CONFIG.formEndpoint, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' },
-        signal: ctrl.signal
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      // Успех подтверждён сервером — только теперь очищаем форму и сообщаем об отправке
-      form.reset();
-      Object.keys(fields).forEach(k => setFieldError(k, ''));
-      showStatus('success', 'Заявка отправлена. Мы свяжемся с вами для подтверждения записи.');
-    } catch (err) {
-      showStatus('error', 'Не удалось отправить заявку. Ваши данные сохранены в форме — попробуйте ещё раз или свяжитесь с клиникой по контактам на этой странице.');
-    } finally {
-      clearTimeout(timer);
-      submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); submitBtn.textContent = originalLabel;
-      statusBox.focus();
-    }
-  });
-})();
-</script>
-
-</body>
-</html>
-
-
-
-
+      if (!/^[\p{L}][\p{L}\s'’.-]{1,59}$/u.test(v)) return 'Введите имя буквами, не коро
