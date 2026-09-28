@@ -141,8 +141,8 @@
     pointer-events: none;
   }
   .hero-circle {
-    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
-    width: 52vw; height: 90vh; max-width: 720px;
+    position: absolute; right: 0; top: 60%; transform: translateY(-50%);
+    width: 48vw; height: 80vh; max-width: 680px; max-height: 760px;
     border-radius: 50% 0 0 50%;
     background: linear-gradient(135deg, #F0E8DC, #E6D9C8);
     overflow: hidden;
@@ -454,7 +454,7 @@
        релизом на публикацию), тёплые светлые тона, горизонтальный кадр ≥ 1400×1200.
        Стоковое фото допустимо только как «атмосфера» и НЕ должно подаваться как врач/клиент/результат клиники;
        указывайте источник и лицензию в комментарии. Шаблон:
-       <img src="images/hero.jpg" alt="Спокойный интерьер клиники косметологии" width="1400" height="1200" fetchpriority="high" decoding="async">
+       <img src="hero.jpg" alt="Спокойный интерьер клиники косметологии" width="1400" height="1200" fetchpriority="high" decoding="async">
        (фото выше сгиба — БЕЗ loading="lazy")
   -->
 <div class="hero-circle hidden lg:block">
@@ -491,7 +491,7 @@
 
       <!-- Фото кабинета / оборудования / интерьера.
            TODO-OWNER: ЗАМЕНИТЬ оригинальным снимком кабинета клиники (вертикальный кадр ≈ 4:5, ≥ 1000×1250). Шаблон:
-           <img src="images/about-cabinet.jpg" alt="Процедурный кабинет клиники «Сфера Преображения»" width="1000" height="1250" loading="lazy" decoding="async">
+           <img src="about-cabinet.jpg" alt="Процедурный кабинет клиники «Сфера Преображения»" width="1000" height="1250" loading="lazy" decoding="async">
       -->
       <figure class="reveal reveal-delay-2">
 <div class="photo-slot" style="aspect-ratio:4/5;">
@@ -595,7 +595,7 @@
          Проверьте их, добавьте реальную квалификацию (образование, сертификаты, стаж — только подтверждённый).
          Фото врачей: ТОЛЬКО настоящие портреты сотрудников с их согласием. Стоковые лица под именами врачей ставить нельзя.
          Шаблон внутри .specialist-img:
-         <img src="images/doctor-1.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+         <img src="doctor-1.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
     -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -663,7 +663,7 @@
 
     <!-- TODO-OWNER: публикуйте ТОЛЬКО реальные снимки клиники и ТОЛЬКО с письменного согласия клиента.
          Никаких стоковых или сгенерированных «до/после». Замените блок .ba-placeholder на:
-         <img src="images/result-1.jpg" alt="Описание снимка: процедура, срок после" width="600" height="800" loading="lazy" decoding="async">
+         <img src="result-1.jpg" alt="Описание снимка: процедура, срок после" width="600" height="800" loading="lazy" decoding="async">
          Дублируйте <li class="gallery-item"> для новых снимков. -->
     <div class="reveal">
       <div id="gallery" class="gallery-scroller" role="region" aria-label="Галерея работ клиники. Прокручивайте стрелками влево и вправо" tabindex="0">
@@ -1289,3 +1289,5 @@
 
 </body>
 </html>
+
+
