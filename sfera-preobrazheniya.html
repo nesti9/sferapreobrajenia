@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сфера Преображения — клиника косметологии в Барнауле</title>
+<meta name="description" content="Клиника косметологии «Сфера Преображения» в Барнауле: инъекционная и аппаратная косметология, уходовые процедуры. Запишитесь на консультацию.">
+<meta name="theme-color" content="#FAF8F5">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     ЧЕКЛИСТ ВЛАДЕЛЬЦА ПЕРЕД ПУБЛИКАЦИЕЙ (ищите в файле метки TODO-OWNER)
+     1. Внизу файла, в блоке SITE_CONFIG: телефон, WhatsApp, Telegram, адрес,
+        часы работы, ссылка на карту, endpoint формы, политика конфиденциальности, лицензия.
+     2. Фото: первый экран, «О клинике», врачи, галерея (шаблоны <img> лежат в комментариях).
+     3. Данные о специалистах (ФИО, должности, квалификация) и цены услуг.
+     4. Отзывы — только реальные, со ссылкой на источник.
+     5. Раскомментировать og:image / og:url / canonical, когда будет домен.
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Сфера Преображения">
+<meta property="og:title" content="Сфера Преображения — клиника косметологии в Барнауле">
+<meta property="og:description" content="Инъекционная и аппаратная косметология, уходовые процедуры. Запишитесь на консультацию.">
+<!-- TODO-OWNER: после публикации укажите абсолютные адреса (нужно для превью в мессенджерах):
+<meta property="og:url" content="https://ВАШ-ДОМЕН/">
+<meta property="og:image" content="https://ВАШ-ДОМЕН/og-image.jpg">  (1200×630, настоящее фото клиники)
+<link rel="canonical" href="https://ВАШ-ДОМЕН/">
+-->
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon-заглушка (SVG, встроен). TODO-OWNER: замените на фирменный знак клиники -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF8F5'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23A07840' stroke-width='2.5'/%3E%3Cpath d='M32 18l3.5 10.5L46 32l-10.5 3.5L32 46l-3.5-10.5L18 32l10.5-3.5z' fill='%23C9A96E'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Tailwind Play CDN оставлен из исходника. Для продакшена лучше заменить готовым CSS (сборка Tailwind) — это заметно ускорит загрузку. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<style>
+  :root {
+    --ivory: #FAF8F5;
+    --warm-white: #FFFFFF;
+    --blush: #F5EDE4;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B7;
+    --gold-dark: #A07840;
+    --gold-text: #8C6530;      /* золото для мелкого текста на светлом фоне (контраст ≥ 4.5:1) */
+    --text-dark: #1A1714;
+    --text-mid: #4A4540;
+    --text-soft: #6F675E;      /* было #8A8178 — не хватало контраста */
+    --border: #E8E0D5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 72px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--ivory);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  .font-display { font-family: 'Cormorant Garamond', serif; }
+
+  /* ── ДОСТУПНОСТЬ ── */
+  :focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; }
+  #contacts :focus-visible { outline-color: var(--gold); }
+  .skip-link {
+    position: absolute; left: 16px; top: -60px; z-index: 300;
+    background: var(--text-dark); color: #fff; padding: 12px 20px; font-size: 14px;
+  }
+  .skip-link:focus { top: 16px; }
+
+  /* ── NAV ── */
+  #navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: all 0.4s ease;
+    padding: 24px 0;
+  }
+  #navbar.scrolled {
+    background: rgba(250,248,245,0.96);
+    backdrop-filter: blur(12px);
+    padding: 14px 0;
+    box-shadow: 0 1px 0 var(--border);
+  }
+
+  /* ── GOLD DIVIDER ── */
+  .gold-line { width: 48px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto; }
+  .gold-line-left { width: 48px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+
+  /* ── BUTTONS ── */
+  .btn-gold {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--gold-text);   /* темнее прежнего #C9A96E: белый текст читаем */
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .btn-gold::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%); transition: transform 0.4s ease;
+  }
+  .btn-gold:hover { background: #6F4E20; transform: translateY(-1px); box-shadow: 0 8px 32px rgba(160,120,64,0.35); }
+  .btn-gold:hover::after { transform: translateX(0); }
+  .btn-gold:disabled { opacity: .7; cursor: progress; transform: none; box-shadow: none; }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 14px 36px;
+    border: 1px solid var(--gold-text);
+    color: var(--gold-text);
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover { background: var(--gold-text); color: #fff; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; min-height: 100svh;
+    background: linear-gradient(165deg, #F7F2EB 0%, #EFE6D9 40%, #E8DDD0 100%);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: ''; position: absolute; top: -10%; right: -5%;
+    width: 65vw; height: 110vh;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-circle {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    width: 52vw; height: 90vh; max-width: 720px;
+    border-radius: 50% 0 0 50%;
+    background: linear-gradient(135deg, #F0E8DC, #E6D9C8);
+    overflow: hidden;
+  }
+  .hero-circle img, .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-mobile-photo {
+    height: 200px; margin-bottom: 32px; overflow: hidden;
+    border-radius: 120px 120px 0 0 / 100px 100px 0 0;
+    background: linear-gradient(135deg, #EFE6D9 0%, #E0D0BE 50%, #D4C4AF 100%);
+  }
+  .hero-mobile-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ── ЗАГЛУШКИ ДЛЯ ФОТО ── */
+  .photo-slot {
+    position: relative; overflow: hidden; width: 100%;
+    background: linear-gradient(135deg, var(--blush), var(--gold-light));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-slot-note { text-align: center; color: var(--gold-text); opacity: .75; padding: 24px; font-size: 13px; line-height: 1.5; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-text);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: currentColor; }
+  .section-label.on-dark { color: var(--gold-light); }
+
+  /* ── SERVICES ── */
+  .service-card {
+    background: #fff; border: 1px solid var(--border);
+    padding: 40px 32px;
+    transition: all 0.35s ease;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+  }
+  .service-icon {
+    width: 52px; height: 52px; border: 1px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px; color: var(--gold-dark); flex-shrink: 0;
+  }
+  .service-price { margin-top: 20px; font-size: 13px; color: var(--text-mid); }
+  .service-price strong { font-weight: 500; }
+  .service-cta {
+    display: inline-block; margin-top: auto; padding-top: 20px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-text);
+  }
+  .service-cta:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ── SPECIALISTS ── */
+  .specialist-card { background: #fff; border: 1px solid var(--border); overflow: hidden; transition: all 0.35s ease; }
+  .specialist-img { aspect-ratio: 3/4; }
+
+  /* ── GALLERY (нативная прокрутка со scroll-snap: свайп, колесо, клавиатура) ── */
+  .gallery-scroller {
+    display: flex; gap: 16px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .gallery-scroller::-webkit-scrollbar { display: none; }
+  .gallery-item { flex: 0 0 min(280px, 78%); scroll-snap-align: start; }
+  .ba-card {
+    position: relative; overflow: hidden; aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #F0E8DC, #E0D4C4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ba-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ba-caption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px;
+    background: linear-gradient(to top, rgba(26,23,20,0.7), transparent);
+    color: #fff; font-size: 14px; font-weight: 300;
+  }
+  .slider-btn {
+    width: 48px; height: 48px; border: 1px solid var(--border); background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dark); transition: all .3s ease; cursor: pointer;
+  }
+  .slider-btn:hover:not(:disabled) { border-color: var(--gold-dark); color: var(--gold-text); }
+  .slider-btn:disabled { opacity: .35; cursor: default; }
+
+  /* ── REVIEWS ── */
+  .review-card { background: #fff; border: 1px solid var(--border); padding: 36px 32px; }
+
+  /* ── FAQ ── */
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question {
+    width: 100%; text-align: left; gap: 16px;
+    padding: 28px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; background: none; border: none;
+    font: inherit; font-size: 17px; font-weight: 400;
+    color: var(--text-dark); transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--gold-text); }
+  .faq-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease; color: var(--gold-text);
+  }
+  .faq-icon .v { transition: opacity .2s; }
+  .faq-question[aria-expanded="true"] .faq-icon { background: var(--gold-text); color: #fff; border-color: var(--gold-text); }
+  .faq-question[aria-expanded="true"] .faq-icon .v { opacity: 0; }
+  /* grid 0fr→1fr: плавное раскрытие без «магического» max-height; закрытый ответ скрыт и от Tab, и от скринридера */
+  .faq-answer { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .4s ease, visibility .4s; }
+  .faq-answer.open { grid-template-rows: 1fr; visibility: visible; }
+  .faq-answer > div { overflow: hidden; min-height: 0; }
+  .faq-answer-inner { padding-bottom: 28px; line-height: 1.75; color: var(--text-mid); }
+
+  /* ── ФОРМА ── */
+  .field-label {
+    display: block; margin-bottom: 4px;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft);
+  }
+  .field-label .req { color: #9B2C2C; }
+  .input-field {
+    width: 100%; padding: 12px 0;
+    border: none; border-bottom: 1px solid #C9BFB1;
+    background: transparent;
+    font-family: 'Inter', sans-serif; font-size: 16px; /* 16px — iOS не увеличивает страницу при фокусе */
+    color: var(--text-dark); border-radius: 0;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .input-field::placeholder { color: #8A8178; }
+  .input-field:focus { outline: none; border-color: var(--gold-dark); box-shadow: 0 1px 0 0 var(--gold-dark); }
+  .input-field[aria-invalid="true"] { border-color: #9B2C2C; }
+  .field-error { color: #9B2C2C; font-size: 13px; margin-top: 6px; }
+  .form-status { padding: 14px 16px; border-left: 3px solid; font-size: 14px; line-height: 1.6; }
+  .form-status.info { background: #FBF5E9; border-color: var(--gold-dark); color: var(--text-dark); }
+  .form-status.error { background: #FDF0F0; border-color: #9B2C2C; color: #6B1E1E; }
+  .form-status.success { background: #EEF6F0; border-color: #2F6B45; color: #1F4D31; }
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; line-height: 1.6; color: var(--text-mid); }
+  .consent input { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold-text); }
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* ── ADVANTAGES ── */
+  .adv-icon {
+    width: 64px; height: 64px; background: var(--blush); border: 1px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-dark); margin-bottom: 24px;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* hover после .reveal.visible, иначе transform от .reveal перебивает подъём карточек */
+  .service-card:hover, .service-card:focus-within { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.07); }
+  .service-card:hover::before, .service-card:focus-within::before { transform: scaleX(1); }
+  .specialist-card:hover { box-shadow: 0 24px 60px rgba(0,0,0,0.09); transform: translateY(-3px); }
+
+  /* ── MOBILE MENU ── */
+  #mobile-menu {
+    transform: translateX(100%); visibility: hidden;
+    transition: transform 0.4s ease, visibility 0s linear 0.4s;
+    overflow-y: auto;
+  }
+  #mobile-menu.open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--text-dark); color: rgba(255,255,255,0.7); }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--gold-light); padding: 8px 18px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-text);
+  }
+
+  .contact-missing { color: rgba(255,255,255,0.6); font-size: 15px; font-weight: 300; }
+
+  /* ── УМЕНЬШЕНИЕ ДВИЖЕНИЯ ── */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body id="top">
+
+<!-- Спрайт иконок: подключаются через <use href="#..."> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="s1" viewBox="0 0 24 24"><path d="M12 21.7C5.4 21.7 2 18 2 12c0-5.5 3.8-9 9-9s10.5 3.5 10.5 9.5c0 4.7-3.4 9.2-9.5 9.2z"/><path d="M12 21.7V12M12 12c-2.5-2-6-1.5-8 1"/></symbol>
+    <symbol id="s2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+    <symbol id="s3" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6M12 12l4 4"/></symbol>
+    <symbol id="s4" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="s5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></symbol>
+    <symbol id="s6" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 12h6M9 17h4"/></symbol>
+    <symbol id="s7" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    <symbol id="a1" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="a2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+    <symbol id="a3" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+    <symbol id="a4" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="a6" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.41a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></symbol>
+    <symbol id="i-tg" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
+  </defs>
+</svg>
+
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+
+<!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+<header>
+  <nav id="navbar" aria-label="Основная навигация">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="#top" class="font-display text-xl font-light tracking-widest text-[var(--text-dark)]" style="letter-spacing:0.18em;" aria-label="Сфера Преображения — в начало страницы">
+        СФЕРА<span class="text-[var(--gold-text)]" aria-hidden="true"> ✦ </span>ПРЕОБРАЖЕНИЯ
+      </a>
+
+      <div class="hidden lg:flex items-center gap-10">
+        <a href="#about" class="text-[13px] font-medium tracking-widest uppercase text-[var(--text-mid)] hover:text-[var(--gold-text)] transition-colors" style="letter-spacing:0.12em;">О клинике</a>
+        <a href="#services" class="text-[13px] font-medium tracking-widest uppercase text-[var(--text-mid)] hover:text-[var(--gold-text)] transition-colors" style="letter-spacing:0.12em;">Услуги</a>
+        <a href="#specialists" class="text-[13px] font-medium tracking-widest uppercase text-[var(--text-mid)] hover:text-[var(--gold-text)] transition-colors" style="letter-spacing:0.12em;">Специалисты</a>
+        <a href="#reviews" class="text-[13px] font-medium tracking-widest uppercase text-[var(--text-mid)] hover:text-[var(--gold-text)] transition-colors" style="letter-spacing:0.12em;">Отзывы</a>
+        <a href="#contacts" class="text-[13px] font-medium tracking-widest uppercase text-[var(--text-mid)] hover:text-[var(--gold-text)] transition-colors" style="letter-spacing:0.12em;">Контакты</a>
+      </div>
+
+      <a href="#contacts" class="hidden lg:block btn-outline text-[12px]">Записаться</a>
+
+      <button id="burger" type="button" class="lg:hidden flex flex-col gap-1.5 items-center justify-center w-11 h-11"
+              aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="block w-6 h-px bg-[var(--text-dark)]" aria-hidden="true"></span>
+        <span class="block w-6 h-px bg-[var(--text-dark)]" aria-hidden="true"></span>
+        <span class="block w-4 h-px bg-[var(--gold-text)]" aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Мобильное меню (диалог: закрыто = скрыто от Tab и скринридера) -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Меню сайта"
+       class="fixed inset-0 z-[200] bg-[var(--ivory)] flex flex-col justify-center px-10 py-24 lg:hidden">
+    <button id="close-menu" type="button" class="absolute top-5 right-5 w-11 h-11 flex items-center justify-center text-3xl text-[var(--text-mid)]" aria-label="Закрыть меню">
+      <span aria-hidden="true">×</span>
+    </button>
+    <div class="flex flex-col gap-7">
+      <a href="#about" class="font-display text-4xl font-light text-[var(--text-dark)] mobile-link">О клинике</a>
+      <a href="#services" class="font-display text-4xl font-light text-[var(--text-dark)] mobile-link">Услуги</a>
+      <a href="#specialists" class="font-display text-4xl font-light text-[var(--text-dark)] mobile-link">Специалисты</a>
+      <a href="#reviews" class="font-display text-4xl font-light text-[var(--text-dark)] mobile-link">Отзывы</a>
+      <a href="#contacts" class="font-display text-4xl font-light text-[var(--text-dark)] mobile-link">Контакты</a>
+    </div>
+    <a href="#contacts" class="btn-gold mt-12 text-center mobile-link">Записаться на консультацию</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════════════════ HERO ══════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="max-w-7xl mx-auto px-6 pt-28 pb-16 lg:py-0 w-full">
+    <div class="max-w-xl relative z-10">
+
+      <!-- Мобильное фото первого экрана (на десктопе фото справа, в .hero-circle) -->
+      <div class="hero-mobile-photo lg:hidden" aria-hidden="true">
+        <!-- TODO-OWNER: то же фото, что и в .hero-circle ниже. Шаблон:
+        <img src="images/hero.jpg" alt="Интерьер клиники «Сфера Преображения»" width="800" height="400" fetchpriority="high" decoding="async">
+        -->
+        <div class="w-full h-full flex items-center justify-center" style="opacity:.4;">
+          <div class="font-display text-6xl font-light text-[var(--gold-dark)]">S</div>
+        </div>
+      </div>
+
+      <h1 id="hero-title" class="lg:mt-16 font-display text-5xl sm:text-6xl lg:text-7xl font-light leading-none mb-8 reveal reveal-delay-1" style="letter-spacing:-0.01em;">
+        Подчеркнём<br> вашу<br>
+        <em style="font-style:italic;color:var(--gold-dark);">естественную</em><br>
+        красоту
+      </h1>
+
+      <div class="badge mb-8 reveal">
+        <span style="color:var(--gold-dark);" aria-hidden="true">✦</span>
+        Барнаул · Косметология
+      </div>
+
+      <p class="text-[var(--text-mid)] text-lg font-light leading-relaxed mb-10 max-w-sm reveal reveal-delay-2">
+        Консультация врача, индивидуальный подбор процедур и внимательное отношение к вашей коже
+      </p>
+
+      <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
+        <a href="#contacts" class="btn-gold">Записаться на консультацию</a>
+        <a href="#services" class="btn-outline">Все процедуры</a>
+      </div>
+
+      <!-- Вместо непроверенных цифр (130+ клиентов, рейтинг 5.0, 7+ лет) — нейтральные принципы.
+           TODO-OWNER: реальные цифры (годы работы, число клиентов, рейтинг) добавляйте только с подтверждаемым источником. -->
+      <ul class="flex flex-wrap gap-x-10 gap-y-4 mt-14 reveal reveal-delay-4" style="list-style:none;">
+        <li class="font-display text-xl font-light text-[var(--text-dark)]"><span class="text-[var(--gold-dark)]" aria-hidden="true">✦</span> Консультация перед процедурой</li>
+        <li class="font-display text-xl font-light text-[var(--text-dark)]"><span class="text-[var(--gold-dark)]" aria-hidden="true">✦</span> Индивидуальный подбор</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Фото первого экрана (десктоп).
+       TODO-OWNER: ЗАМЕНИТЬ. Нужен ОРИГИНАЛЬНЫЙ снимок: спокойный интерьер клиники или портрет (модель с подписанным
+       релизом на публикацию), тёплые светлые тона, горизонтальный кадр ≥ 1400×1200.
+       Стоковое фото допустимо только как «атмосфера» и НЕ должно подаваться как врач/клиент/результат клиники;
+       указывайте источник и лицензию в комментарии. Шаблон:
+       <img src="images/hero.jpg" alt="Спокойный интерьер клиники косметологии" width="1400" height="1200" fetchpriority="high" decoding="async">
+       (фото выше сгиба — БЕЗ loading="lazy")
+  -->
+  <div class="hero-circle hidden lg:block" aria-hidden="true">
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#EFE6D9 0%,#E0D0BE 50%,#D4C4AF 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:60px;">
+      <div style="text-align:center;opacity:0.4;">
+        <div class="font-display text-7xl font-light text-[var(--gold-dark)]">S</div>
+        <div style="width:1px;height:80px;background:var(--gold-light);margin:12px auto;"></div>
+        <div class="font-display text-base font-light tracking-widest text-[var(--gold-dark)]" style="letter-spacing:0.3em;">СФЕРА</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ О КЛИНИКЕ ══════════════════════════════ -->
+<section id="about" class="py-24 lg:py-32 bg-white" aria-labelledby="about-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div>
+        <div class="section-label mb-6 reveal">О клинике</div>
+        <h2 id="about-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light leading-tight mb-8 reveal reveal-delay-1">
+          Место, где наука<br>
+          <em style="font-style:italic;color:var(--gold-dark);">встречается с искусством</em>
+        </h2>
+        <p class="text-[var(--text-mid)] text-lg font-light leading-relaxed mb-6 reveal reveal-delay-2">
+          «Сфера Преображения» — клиника косметологии в Барнауле. Мы бережно относимся к природной красоте каждого пациента и подбираем процедуры вместе с врачом.
+        </p>
+        <p class="text-[var(--text-mid)] font-light leading-relaxed mb-10 reveal reveal-delay-2">
+          Мы убеждены: настоящая красота — это гармония. Задача специалистов — не изменить вас, а мягко скорректировать то, что беспокоит, сохранив то, что делает вас неповторимой.
+        </p>
+        <!-- TODO-OWNER: если есть — добавьте проверяемые сведения (номер лицензии, сертификаты, оборудование).
+             Прежние утверждения («сертифицированные препараты», «строгие протоколы» и т. п.) убраны как неподтверждённые. -->
+        <ul class="flex flex-col gap-4 reveal reveal-delay-3" style="list-style:none;">
+          <li class="flex items-center gap-4"><span style="width:6px;height:6px;background:var(--gold);border-radius:50%;flex-shrink:0;" aria-hidden="true"></span><span class="text-[var(--text-mid)] font-light">Первичная консультация и обсуждение ваших целей</span></li>
+          <li class="flex items-center gap-4"><span style="width:6px;height:6px;background:var(--gold);border-radius:50%;flex-shrink:0;" aria-hidden="true"></span><span class="text-[var(--text-mid)] font-light">Информирование о показаниях и противопоказаниях</span></li>
+          <li class="flex items-center gap-4"><span style="width:6px;height:6px;background:var(--gold);border-radius:50%;flex-shrink:0;" aria-hidden="true"></span><span class="text-[var(--text-mid)] font-light">Индивидуальный план вместо «стандартного набора»</span></li>
+        </ul>
+      </div>
+
+      <!-- Фото кабинета / оборудования / интерьера.
+           TODO-OWNER: ЗАМЕНИТЬ оригинальным снимком кабинета клиники (вертикальный кадр ≈ 4:5, ≥ 1000×1250). Шаблон:
+           <img src="images/about-cabinet.jpg" alt="Процедурный кабинет клиники «Сфера Преображения»" width="1000" height="1250" loading="lazy" decoding="async">
+      -->
+      <figure class="reveal reveal-delay-2">
+        <div class="photo-slot" style="aspect-ratio:4/5;">
+          <div class="photo-slot-note">
+            <div class="font-display text-6xl font-light mb-3" aria-hidden="true">✦</div>
+            Здесь будет фотография кабинета или интерьера клиники
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ УСЛУГИ ═════════════════════════════════ -->
+<section id="services" class="py-24 lg:py-32 bg-[var(--ivory)]" aria-labelledby="services-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 lg:mb-20">
+      <div class="section-label justify-center mb-6 reveal">Процедуры</div>
+      <h2 id="services-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light reveal reveal-delay-1">Наши услуги</h2>
+      <div class="gold-line mt-6 reveal reveal-delay-2"></div>
+      <p class="text-[var(--text-soft)] font-light mt-6 max-w-xl mx-auto reveal reveal-delay-2">Показания, противопоказания и подходящий вариант процедуры определяет врач на консультации.</p>
+    </div>
+
+    <!-- TODO-OWNER: в каждой карточке замените «после консультации» на реальную цену («от N ₽»), когда она подтверждена. -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-[var(--border)]">
+
+      <article class="service-card flex flex-col reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s1"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-3">Контурная пластика губ</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Коррекция формы и объёма губ инъекциями на основе гиалуроновой кислоты. Препарат и объём подбирает врач.</p>
+        <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+        <a href="#contacts" class="service-cta" data-service="Контурная пластика губ" aria-label="Записаться: Контурная пластика губ">Записаться →</a>
+      </article>
+
+      <article class="service-card flex flex-col reveal reveal-delay-1">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s2"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-3">Ботулинотерапия</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Инъекционная процедура для коррекции мимических морщин. Возможность проведения определяется после осмотра.</p>
+        <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+        <a href="#contacts" class="service-cta" data-service="Ботулинотерапия" aria-label="Записаться: Ботулинотерапия">Записаться →</a>
+      </article>
+
+      <article class="service-card flex flex-col reveal reveal-delay-2">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s3"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-3">Биоревитализация</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Инъекции на основе гиалуроновой кислоты для увлажнения кожи. Схема и число процедур подбираются индивидуально.</p>
+        <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+        <a href="#contacts" class="service-cta" data-service="Биоревитализация" aria-label="Записаться: Биоревитализация">Записаться →</a>
+      </article>
+
+      <article class="service-card flex flex-col reveal reveal-delay-3">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s4"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-3">Чистка лица</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Механическая, ультразвуковая или комбинированная чистка. Вид процедуры зависит от состояния кожи.</p>
+        <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+        <a href="#contacts" class="service-cta" data-service="Чистка лица" aria-label="Записаться: Чистка лица">Записаться →</a>
+      </article>
+
+      <article class="service-card flex flex-col reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s5"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-3">Фотоомоложение</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Аппаратная процедура с применением световой энергии. Проводится с учётом противопоказаний и типа кожи.</p>
+        <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+        <a href="#contacts" class="service-cta" data-service="Фотоомоложение" aria-label="Записаться: Фотоомоложение">Записаться →</a>
+      </article>
+
+      <article class="service-card flex flex-col reveal reveal-delay-1">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s6"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-3">Аппаратная косметология</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Аппаратные методики, например RF-лифтинг и микротоковая терапия. Актуальный перечень уточняйте при записи.</p>
+        <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+        <a href="#contacts" class="service-cta" data-service="Аппаратная косметология" aria-label="Записаться: Аппаратная косметология">Записаться →</a>
+      </article>
+
+      <article class="service-card flex flex-col sm:flex-row sm:gap-8 sm:items-start sm:col-span-2 lg:col-span-3 xl:col-span-2 reveal reveal-delay-2">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s7"/></svg></div>
+        <div class="flex flex-col flex-1 self-stretch">
+          <h3 class="font-display text-2xl font-light mb-3">Уходовые процедуры</h3>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed">Пилинги, маски, мезотерапия. Программа ухода подбирается с учётом типа и состояния вашей кожи.</p>
+          <p class="service-price">Стоимость: <strong>после консультации</strong></p>
+          <a href="#contacts" class="service-cta" data-service="Уходовые процедуры" aria-label="Записаться: Уходовые процедуры">Записаться →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="text-center mt-14 reveal">
+      <a href="#contacts" class="btn-gold">Записаться на консультацию</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ СПЕЦИАЛИСТЫ ══════════════════════════════ -->
+<section id="specialists" class="py-24 lg:py-32 bg-white" aria-labelledby="specialists-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 lg:mb-20">
+      <div class="section-label justify-center mb-6 reveal">Команда</div>
+      <h2 id="specialists-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light reveal reveal-delay-1">Наши специалисты</h2>
+      <div class="gold-line mt-6 reveal reveal-delay-2"></div>
+    </div>
+
+    <!-- TODO-OWNER: имена, должности и направления ниже перенесены из исходного макета и могут быть демонстрационными.
+         Проверьте их, добавьте реальную квалификацию (образование, сертификаты, стаж — только подтверждённый).
+         Фото врачей: ТОЛЬКО настоящие портреты сотрудников с их согласием. Стоковые лица под именами врачей ставить нельзя.
+         Шаблон внутри .specialist-img:
+         <img src="images/doctor-1.jpg" alt="Анна Михайловна, косметолог-дерматолог" width="600" height="800" loading="lazy" decoding="async">
+    -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <article class="specialist-card reveal">
+        <div class="photo-slot specialist-img" role="img" aria-label="Здесь будет портрет специалиста">
+          <div class="font-display text-8xl font-light text-[var(--gold-dark)]" style="opacity:.35;" aria-hidden="true">АМ</div>
+        </div>
+        <div class="p-8">
+          <h3 class="font-display text-2xl font-light mb-1">Анна Михайловна</h3>
+          <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог-дерматолог</div>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed mb-6">Об образовании, квалификации и опыте специалиста уточняйте у клиники при записи.</p>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Инъекционная косметология</span>
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Аппаратная терапия</span>
+          </div>
+          <a href="#contacts" class="btn-outline w-full text-center block text-[12px]" aria-label="Записаться к специалисту: Анна Михайловна">Записаться</a>
+        </div>
+      </article>
+
+      <article class="specialist-card reveal reveal-delay-1">
+        <div class="photo-slot specialist-img" style="background:linear-gradient(135deg,#E8DDD0,#D8CFC4);" role="img" aria-label="Здесь будет портрет специалиста">
+          <div class="font-display text-8xl font-light text-[var(--gold-dark)]" style="opacity:.35;" aria-hidden="true">ЕС</div>
+        </div>
+        <div class="p-8">
+          <h3 class="font-display text-2xl font-light mb-1">Елена Сергеевна</h3>
+          <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог-эстетист</div>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed mb-6">Об образовании, квалификации и опыте специалиста уточняйте у клиники при записи.</p>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Биоревитализация</span>
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Уходовые программы</span>
+          </div>
+          <a href="#contacts" class="btn-outline w-full text-center block text-[12px]" aria-label="Записаться к специалисту: Елена Сергеевна">Записаться</a>
+        </div>
+      </article>
+
+      <article class="specialist-card reveal reveal-delay-2">
+        <div class="photo-slot specialist-img" style="background:linear-gradient(135deg,#EDE5DA,#DDD0C0);" role="img" aria-label="Здесь будет портрет специалиста">
+          <div class="font-display text-8xl font-light text-[var(--gold-dark)]" style="opacity:.35;" aria-hidden="true">ОВ</div>
+        </div>
+        <div class="p-8">
+          <h3 class="font-display text-2xl font-light mb-1">Ольга Витальевна</h3>
+          <div class="text-[var(--gold-text)] text-sm font-medium mb-4">Косметолог</div>
+          <p class="text-[var(--text-soft)] text-sm font-light leading-relaxed mb-6">Об образовании, квалификации и опыте специалиста уточняйте у клиники при записи.</p>
+          <div class="flex gap-2 flex-wrap mb-6">
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Фотоомоложение</span>
+            <span class="text-xs border border-[var(--gold-light)] text-[var(--gold-text)] px-3 py-1">Аппаратные методики</span>
+          </div>
+          <a href="#contacts" class="btn-outline w-full text-center block text-[12px]" aria-label="Записаться к специалисту: Ольга Витальевна">Записаться</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ ГАЛЕРЕЯ РАБОТ ═══════════════════════════════ -->
+<section id="results" class="py-24 lg:py-32 bg-[var(--ivory)]" aria-labelledby="results-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 lg:mb-20">
+      <div class="section-label justify-center mb-6 reveal">Галерея</div>
+      <h2 id="results-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light reveal reveal-delay-1">Результаты работ</h2>
+      <div class="gold-line mt-6 mb-6 reveal reveal-delay-2"></div>
+      <p class="text-[var(--text-soft)] font-light max-w-xl mx-auto reveal reveal-delay-2">Раздел наполняется настоящими фотографиями работ клиники. Результат процедур индивидуален.</p>
+    </div>
+
+    <!-- TODO-OWNER: публикуйте ТОЛЬКО реальные снимки клиники и ТОЛЬКО с письменного согласия клиента.
+         Никаких стоковых или сгенерированных «до/после». Замените блок .ba-placeholder на:
+         <img src="images/result-1.jpg" alt="Описание снимка: процедура, срок после" width="600" height="800" loading="lazy" decoding="async">
+         Дублируйте <li class="gallery-item"> для новых снимков. -->
+    <div class="reveal">
+      <div id="gallery" class="gallery-scroller" role="region" aria-label="Галерея работ клиники. Прокручивайте стрелками влево и вправо" tabindex="0">
+        <ul style="display:contents;list-style:none;">
+          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Контурная пластика губ</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Ботулинотерапия</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Биоревитализация</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Чистка лица</figcaption></figure></li>
+          <li class="gallery-item"><figure class="ba-card"><div class="ba-placeholder photo-slot-note">Место для фото<br>с согласия клиента</div><figcaption class="ba-caption">Фотоомоложение</figcaption></figure></li>
+        </ul>
+      </div>
+
+      <div class="flex justify-center gap-4 mt-10">
+        <button id="sliderPrev" type="button" class="slider-btn" aria-label="Предыдущие фотографии" aria-controls="gallery">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#i-prev"/></svg>
+        </button>
+        <button id="sliderNext" type="button" class="slider-btn" aria-label="Следующие фотографии" aria-controls="gallery">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#i-next"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ОТЗЫВЫ ════════════════════════════════════ -->
+<section id="reviews" class="py-24 lg:py-32 bg-white" aria-labelledby="reviews-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="mb-12">
+      <div class="section-label mb-6 reveal">Отзывы</div>
+      <h2 id="reviews-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light reveal reveal-delay-1">
+        Что говорят<br>
+        <em style="color:var(--gold-dark);font-style:italic;">наши клиенты</em>
+      </h2>
+    </div>
+
+    <!-- Прежние отзывы, рейтинг «5.0» и «130+ отзывов» удалены: они были шаблонными и непроверяемыми.
+         TODO-OWNER: добавляйте только реальные отзывы (с разрешения автора и ссылкой на источник:
+         2ГИС, Яндекс Карты и т. п.). Шаблон карточки:
+         <figure class="review-card">
+           <blockquote class="text-[var(--text-mid)] font-light leading-relaxed mb-6 text-[15px]">«Текст отзыва»</blockquote>
+           <figcaption class="text-sm"><span class="font-medium">Имя</span> · <a href="ССЫЛКА-НА-ОТЗЫВ" rel="noopener">источник</a></figcaption>
+         </figure> -->
+    <div class="review-card max-w-2xl reveal">
+      <p class="text-[var(--text-mid)] font-light leading-relaxed">Здесь появятся отзывы клиентов из открытых источников. Пока раздел не заполнен — вы можете задать вопросы клинике при записи на консультацию.</p>
+      <a href="#contacts" class="service-cta">Связаться с клиникой →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ПРЕИМУЩЕСТВА ══════════════════════════════ -->
+<section id="advantages" class="py-24 lg:py-32 bg-[var(--ivory)]" aria-labelledby="adv-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 lg:mb-20">
+      <div class="section-label justify-center mb-6 reveal">Почему мы</div>
+      <h2 id="adv-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light reveal reveal-delay-1">Наш подход</h2>
+      <div class="gold-line mt-6 reveal reveal-delay-2"></div>
+    </div>
+
+    <!-- TODO-OWNER: тексты ниже нейтральные. Уточните и подтвердите фактами (оборудование, сертификаты, стерилизация) перед усилением формулировок. -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div class="reveal">
+        <div class="adv-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#a1"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-4">Безопасность прежде всего</h3>
+        <p class="text-[var(--text-soft)] font-light leading-relaxed text-[15px]">Перед процедурой врач оценивает состояние кожи, собирает анамнез и обсуждает противопоказания.</p>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="adv-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#a2"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-4">Прозрачная информация</h3>
+        <p class="text-[var(--text-soft)] font-light leading-relaxed text-[15px]">Об образовании специалистов, используемых препаратах и стоимости можно узнать до начала процедуры.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="adv-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#a3"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-4">Оборудование и методики</h3>
+        <p class="text-[var(--text-soft)] font-light leading-relaxed text-[15px]">Перечень доступных аппаратных процедур и используемого оборудования уточняйте при записи.</p>
+      </div>
+      <div class="reveal">
+        <div class="adv-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#a4"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-4">Индивидуальный подход</h3>
+        <p class="text-[var(--text-soft)] font-light leading-relaxed text-[15px]">Программа подбирается с учётом особенностей вашей кожи, образа жизни и пожеланий.</p>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="adv-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#s7"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-4">Гигиена</h3>
+        <p class="text-[var(--text-soft)] font-light leading-relaxed text-[15px]">Порядок обработки инструментов и используемые материалы можно уточнить у администратора клиники.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="adv-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#a6"/></svg></div>
+        <h3 class="font-display text-2xl font-light mb-4">Курсы процедур</h3>
+        <p class="text-[var(--text-soft)] font-light leading-relaxed text-[15px]">При необходимости врач предложит схему из нескольких процедур и скорректирует её по ходу работы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FAQ ═══════════════════════════════════ -->
+<section id="faq" class="py-24 lg:py-32 bg-white" aria-labelledby="faq-title">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16 lg:mb-20">
+      <div class="section-label justify-center mb-6 reveal">FAQ</div>
+      <h2 id="faq-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light reveal reveal-delay-1">Частые вопросы</h2>
+      <div class="gold-line mt-6 reveal reveal-delay-2"></div>
+    </div>
+
+    <!-- Ответы намеренно общие: конкретные сроки и цифры по препаратам не приводятся — их называет врач.
+         TODO-OWNER: при необходимости дополните ответы утверждёнными врачом клиники формулировками. -->
+    <div class="reveal" id="faq-list">
+
+      <div class="faq-item">
+        <h3><button type="button" class="faq-question" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+          <span>Больно ли делать косметологические процедуры?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path class="v" d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button></h3>
+        <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><div class="faq-answer-inner">
+          Ощущения зависят от процедуры и индивидуального болевого порога. На консультации вы можете обсудить с врачом возможные ощущения и варианты обезболивания, если они предусмотрены.
+        </div></div></div>
+      </div>
+
+      <div class="faq-item">
+        <h3><button type="button" class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+          <span>Сколько длится восстановительный период?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path class="v" d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button></h3>
+        <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><div class="faq-answer-inner">
+          Это зависит от вида процедуры и особенностей вашей кожи. Врач расскажет, чего ожидать после конкретной процедуры и как ухаживать за кожей в этот период.
+        </div></div></div>
+      </div>
+
+      <div class="faq-item">
+        <h3><button type="button" class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+          <span>Когда будет заметен результат?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path class="v" d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button></h3>
+        <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><div class="faq-answer-inner">
+          Сроки и выраженность эффекта индивидуальны и различаются для разных процедур. Результат не гарантируется — ориентировочные сроки и необходимость курса врач обсудит с вами на консультации.
+        </div></div></div>
+      </div>
+
+      <div class="faq-item">
+        <h3><button type="button" class="faq-question" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+          <span>Есть ли противопоказания к процедурам?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path class="v" d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button></h3>
+        <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><div class="faq-answer-inner">
+          Да, у каждой процедуры есть свои противопоказания. К ним могут относиться, например, беременность и период лактации, некоторые хронические и острые состояния. Перед процедурой врач проводит консультацию и собирает анамнез, чтобы оценить, подходит ли она именно вам.
+        </div></div></div>
+      </div>
+
+      <div class="faq-item">
+        <h3><button type="button" class="faq-question" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+          <span>Как долго держится результат?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path class="v" d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button></h3>
+        <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><div class="faq-answer-inner">
+          Длительность эффекта зависит от процедуры, используемого препарата и индивидуальных особенностей организма. Врач назовёт ориентировочные сроки и, при необходимости, предложит график поддерживающих процедур.
+        </div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ КОНТАКТЫ ════════════════════════════════ -->
+<section id="contacts" class="py-24 lg:py-32 bg-[var(--text-dark)]" aria-labelledby="contacts-title">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-20">
+
+      <!-- Левая колонка: контакты. Значения подставляются из SITE_CONFIG (см. скрипт внизу). -->
+      <div>
+        <div class="section-label on-dark mb-6 reveal">Связаться с нами</div>
+        <h2 id="contacts-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-white leading-tight mb-8 reveal reveal-delay-1">
+          Запишитесь<br>
+          <em style="color:var(--gold);font-style:italic;">на консультацию</em>
+        </h2>
+        <p class="text-white/70 font-light leading-relaxed mb-12 reveal reveal-delay-2">
+          Оставьте заявку — мы свяжемся с вами, чтобы уточнить детали и подтвердить запись. Формат и стоимость консультации уточняйте при записи.
+        </p>
+
+        <div class="flex flex-col gap-8 reveal reveal-delay-2">
+
+          <div class="flex items-start gap-5" id="row-phone">
+            <div style="width:44px;height:44px;border:1px solid rgba(201,169,110,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
+            </div>
+            <div>
+              <div class="text-xs uppercase text-white/60 mb-1" style="letter-spacing:0.15em;">Телефон</div>
+              <div data-contact="phone"><span class="contact-missing">Номер телефона будет указан здесь</span></div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-5" id="row-whatsapp">
+            <div style="width:44px;height:44px;border:1px solid rgba(201,169,110,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);">
+              <svg width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>
+            </div>
+            <div>
+              <div class="text-xs uppercase text-white/60 mb-1" style="letter-spacing:0.15em;">WhatsApp</div>
+              <div data-contact="whatsapp"></div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-5" id="row-telegram">
+            <div style="width:44px;height:44px;border:1px solid rgba(201,169,110,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);">
+              <svg width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><use href="#i-tg"/></svg>
+            </div>
+            <div>
+              <div class="text-xs uppercase text-white/60 mb-1" style="letter-spacing:0.15em;">Telegram</div>
+              <div data-contact="telegram"></div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-5" id="row-address">
+            <div style="width:44px;height:44px;border:1px solid rgba(201,169,110,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+            </div>
+            <div>
+              <div class="text-xs uppercase text-white/60 mb-1" style="letter-spacing:0.15em;">Адрес</div>
+              <address class="not-italic">
+                <div data-contact="address" class="text-white font-light text-lg"><span class="contact-missing">Адрес клиники будет указан здесь</span></div>
+                <div data-contact="hours" class="text-white/70 text-sm mt-1"></div>
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Правая колонка: форма записи -->
+      <div class="bg-white p-6 sm:p-10 lg:p-14 reveal reveal-delay-1">
+        <h3 class="font-display text-3xl font-light mb-2">Оставьте заявку</h3>
+        <p class="text-[var(--text-soft)] text-sm font-light mb-8">Поля со звёздочкой <span aria-hidden="true">*</span><span class="sr-only">(обязательные)</span> обязательны для заполнения.</p>
+
+        <noscript><p class="form-status error mb-6">Для отправки формы нужен включённый JavaScript. Свяжитесь с клиникой по контактам на этой странице.</p></noscript>
+
+        <form id="booking-form" novalidate autocomplete="on">
+          <div class="flex flex-col gap-7">
+
+            <div>
+              <label class="field-label" for="f-name">Ваше имя <span class="req" aria-hidden="true">*</span></label>
+              <input class="input-field" type="text" id="f-name" name="name" required autocomplete="name" maxlength="60"
+                     placeholder="Анна" aria-required="true" aria-describedby="err-name">
+              <p class="field-error" id="err-name" hidden></p>
+            </div>
+
+            <div>
+              <label class="field-label" for="f-phone">Телефон <span class="req" aria-hidden="true">*</span></label>
+              <input class="input-field" type="tel" id="f-phone" name="phone" required autocomplete="tel" inputmode="tel" maxlength="24"
+                     placeholder="+7 (___) ___-__-__" aria-required="true" aria-describedby="err-phone">
+              <p class="field-error" id="err-phone" hidden></p>
+            </div>
+
+            <div>
+              <label class="field-label" for="f-service">Интересующая процедура</label>
+              <select class="input-field" id="f-service" name="service" style="cursor:pointer;">
+                <option value="">Выберите процедуру (необязательно)</option>
+                <option>Контурная пластика губ</option>
+                <option>Ботулинотерапия</option>
+                <option>Биоревитализация</option>
+                <option>Чистка лица</option>
+                <option>Фотоомоложение</option>
+                <option>Аппаратная косметология</option>
+                <option>Уходовые процедуры</option>
+                <option>Нужна консультация врача</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="f-comment">Комментарий</label>
+              <textarea class="input-field resize-none" id="f-comment" name="comment" rows="3" maxlength="1000"
+                        placeholder="Кратко опишите ваш запрос" aria-describedby="hint-comment"></textarea>
+              <p id="hint-comment" class="text-xs text-[var(--text-soft)] mt-1">Не указывайте подробные медицинские сведения — их обсудит врач.</p>
+            </div>
+
+            <!-- Ловушка для спам-ботов: скрыта от людей и скринридеров -->
+            <div class="hp-field" aria-hidden="true">
+              <label>Оставьте пустым <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <div>
+              <label class="consent">
+                <input type="checkbox" id="f-consent" name="consent" required aria-required="true" aria-describedby="err-consent">
+                <span>Я согласен(-на) на обработку персональных данных <span class="req" style="color:#9B2C2C" aria-hidden="true">*</span>
+                  <span id="privacy-link-wrap"></span></span>
+              </label>
+              <p class="field-error" id="err-consent" hidden></p>
+            </div>
+
+            <div>
+              <button type="submit" id="submit-btn" class="btn-gold w-full text-center">Записаться на консультацию</button>
+              <div id="form-status" class="form-status mt-5" role="status" aria-live="polite" tabindex="-1" hidden></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Карта. Реальная карта подключается только когда в SITE_CONFIG заданы проверенный адрес и mapEmbedUrl. -->
+    <div class="mt-16 reveal">
+      <div id="map-box" style="width:100%;height:260px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:0 24px;text-align:center;">
+        <svg width="32" height="32" fill="none" stroke="rgba(201,169,110,0.7)" stroke-width="1.5" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+        <span class="text-white/70 font-light text-sm tracking-wider">Карта появится здесь после указания адреса клиники</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer>
+  <div class="max-w-7xl mx-auto px-6 py-14">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      <div>
+        <div class="font-display text-xl font-light text-white/90 tracking-widest mb-2" style="letter-spacing:0.18em;">
+          СФЕРА<span style="color:var(--gold);" aria-hidden="true"> ✦ </span>ПРЕОБРАЖЕНИЯ
+        </div>
+        <div class="text-white/60 text-sm font-light">Клиника косметологии · Барнаул</div>
+      </div>
+
+      <nav aria-label="Навигация в подвале" class="flex flex-wrap gap-x-8 gap-y-3 text-sm font-light">
+        <a href="#about" class="text-white/70 hover:text-white transition-colors">О клинике</a>
+        <a href="#services" class="text-white/70 hover:text-white transition-colors">Услуги</a>
+        <a href="#specialists" class="text-white/70 hover:text-white transition-colors">Специалисты</a>
+        <a href="#reviews" class="text-white/70 hover:text-white transition-colors">Отзывы</a>
+        <a href="#contacts" class="text-white/70 hover:text-white transition-colors">Контакты</a>
+      </nav>
+
+      <div class="text-white/60 text-sm font-light">© <span id="year">2026</span> Сфера Преображения</div>
+    </div>
+
+    <div style="height:1px;background:rgba(255,255,255,0.1);margin:32px 0;"></div>
+
+    <!-- TODO-OWNER: юридические реквизиты (наименование организации, ИНН/ОГРН, лицензия) — добавьте в SITE_CONFIG.license -->
+    <div id="license-line" class="text-white/60 text-xs font-light text-center leading-relaxed mb-3" hidden></div>
+    <div class="text-white/60 text-xs font-light text-center leading-relaxed">
+      Имеются противопоказания. Необходима консультация специалиста. Не является публичной офертой.
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════ SCRIPTS ═════════════════════════════════ -->
+<script>
+(() => {
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     SITE_CONFIG — TODO-OWNER: единственное место, где нужно вписать реальные данные.
+     Пустое значение = блок не показывается / показывается аккуратная заглушка.
+     ═══════════════════════════════════════════════════════════════════════ */
+  const SITE_CONFIG = {
+    // Телефон: ссылка tel: в формате +7XXXXXXXXXX и красивая запись для показа.
+    // (В исходнике был демо-номер +7 (385) 200-00-00 — он не подтверждён, поэтому убран.)
+    phone: '',            // например '+73852000000'
+    phoneDisplay: '',     // например '+7 (385) 000-00-00'
+
+    // WhatsApp: только цифры, без «+» (например '79001234567'). Пусто — строка скрыта.
+    whatsapp: '',
+
+    // Telegram: имя без «@», латиница/цифры/«_», 5–32 символа.
+    // В исходнике в адресе стояла кириллическая «а» (sfera_barnаul) — исправлено на латиницу.
+    // TODO-OWNER: убедитесь, что аккаунт с таким именем действительно существует и принадлежит клинике.
+    telegram: 'sfera_barnaul',
+
+    // Адрес и часы работы (исходные «ул. Ленина, 1» и часы были демонстрационными и не подтверждены).
+    address: '',          // например 'г. Барнаул, ул. ..., д. ...'
+    hours: '',            // например 'Пн–Сб: 09:00–20:00'
+
+    // Карта: адрес встраивания (iframe) из конструктора Яндекс/2ГИС. Только https://. Пусто — заглушка.
+    mapEmbedUrl: '',
+
+    // Форма записи: адрес, принимающий POST (FormData) и отвечающий 2xx при успехе
+    // (свой сервер, Formspree, Getform, Make/Zapier webhook и т. п.). Пусто — форма честно
+    // сообщает, что запись пока не подключена, и ничего не «отправляет».
+    formEndpoint: '',
+
+    // Ссылка на политику обработки персональных данных (обязательна для реального сбора данных, ФЗ-152)
+    privacyUrl: '',
+
+    // Строка в подвале: лицензия, ИНН/ОГРН, юридическое лицо
+    license: ''
+  };
+
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Год в подвале ── */
+  $('#year').textContent = new Date().getFullYear();
+
+  /* ── Контакты из конфигурации ── */
+  function setLink(box, href, text, ext) {
+    const a = document.createElement('a');
+    a.href = href;
+    a.textContent = text;
+    a.className = 'text-white font-light text-lg hover:text-[var(--gold)] transition-colors';
+    if (ext) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+    box.replaceChildren(a);
+  }
+  const hideRow = id => { const r = $(id); if (r) r.style.display = 'none'; };
+
+  if (/^\+?\d{10,15}$/.test(SITE_CONFIG.phone) && SITE_CONFIG.phoneDisplay) {
+    setLink($('[data-contact="phone"]'), 'tel:' + SITE_CONFIG.phone, SITE_CONFIG.phoneDisplay);
+  }
+  if (/^\d{10,15}$/.test(SITE_CONFIG.whatsapp)) {
+    setLink($('[data-contact="whatsapp"]'), 'https://wa.me/' + SITE_CONFIG.whatsapp, 'Написать в WhatsApp', true);
+  } else { hideRow('#row-whatsapp'); }
+
+  if (/^[A-Za-z0-9_]{5,32}$/.test(SITE_CONFIG.telegram)) {
+    setLink($('[data-contact="telegram"]'), 'https://t.me/' + SITE_CONFIG.telegram, '@' + SITE_CONFIG.telegram, true);
+  } else {
+    if (SITE_CONFIG.telegram) console.warn('SITE_CONFIG.telegram: имя должно состоять из латинских букв, цифр и «_» (5–32 символа).');
+    hideRow('#row-telegram');
+  }
+  if (SITE_CONFIG.address) $('[data-contact="address"]').textContent = SITE_CONFIG.address;
+  if (SITE_CONFIG.hours)   $('[data-contact="hours"]').textContent = SITE_CONFIG.hours;
+  if (SITE_CONFIG.license) { const l = $('#license-line'); l.textContent = SITE_CONFIG.license; l.hidden = false; }
+  if (SITE_CONFIG.privacyUrl) {
+    const a = document.createElement('a');
+    a.href = SITE_CONFIG.privacyUrl; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.textContent = '(политика обработки данных)';
+    a.style.cssText = 'text-decoration:underline;color:var(--gold-text)';
+    $('#privacy-link-wrap').replaceChildren(a);
+  }
+  if (SITE_CONFIG.address && /^https:\/\//.test(SITE_CONFIG.mapEmbedUrl)) {
+    const f = document.createElement('iframe');
+    f.src = SITE_CONFIG.mapEmbedUrl;
+    f.title = 'Карта: ' + SITE_CONFIG.address;
+    f.loading = 'lazy';
+    f.referrerPolicy = 'no-referrer-when-downgrade';
+    f.style.cssText = 'width:100%;height:100%;border:0;';
+    const box = $('#map-box');
+    box.style.padding = '0'; box.style.display = 'block';
+    box.replaceChildren(f);
+  }
+
+  /* ── Навбар при прокрутке ── */
+  const navbar = $('#navbar');
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── Мобильное меню (aria-expanded, Esc, возврат фокуса, ловушка Tab) ── */
+  const burger = $('#burger'), menu = $('#mobile-menu'), closeBtn = $('#close-menu');
+  function openMenu() {
+    menu.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeMenu(returnFocus = true) {
+    if (!menu.classList.contains('open')) return;
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (returnFocus) burger.focus();
+  }
+  burger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', () => closeMenu());
+  $$('.mobile-link', menu).forEach(l => l.addEventListener('click', () => closeMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key === 'Tab') {
+      const items = $$('a[href], button', menu);
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', ev => { if (ev.matches) closeMenu(false); });
+
+  /* ── Появление блоков при прокрутке ── */
+  const revealEls = $$('.reveal');
+  const heroEls = $$('#hero .reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    revealEls.filter(el => !heroEls.includes(el)).forEach(el => io.observe(el));
+    heroEls.forEach((el, i) => setTimeout(() => el.classList.add('visible'), 150 + i * 150));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  /* ── FAQ (aria-expanded; одновременно открыт один вопрос) ── */
+  $('#faq-list').addEventListener('click', e => {
+    const btn = e.target.closest('.faq-question');
+    if (!btn) return;
+    const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+    $$('.faq-question').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      document.getElementById(b.getAttribute('aria-controls')).classList.remove('open');
+    });
+    if (!wasOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      document.getElementById(btn.getAttribute('aria-controls')).classList.add('open');
+    }
+  });
+
+  /* ── Галерея: нативный scroll-snap + стрелки + клавиатура ── */
+  const scroller = $('#gallery'), prev = $('#sliderPrev'), next = $('#sliderNext');
+  const step = () => {
+    const item = $('.gallery-item', scroller);
+    return item ? item.getBoundingClientRect().width + 16 : 296;
+  };
+  const scrollByStep = dir => scroller.scrollBy({ left: dir * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+  const updateArrows = () => {
+    const max = scroller.scrollWidth - scroller.clientWidth - 1;
+    prev.disabled = scroller.scrollLeft <= 0;
+    next.disabled = scroller.scrollLeft >= max;
+  };
+  prev.addEventListener('click', () => scrollByStep(-1));
+  next.addEventListener('click', () => scrollByStep(1));
+  scroller.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+  scroller.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByStep(1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollByStep(-1); }
+  });
+  updateArrows();
+
+  /* ── Кнопки «Записаться» в карточках подставляют процедуру в форму ── */
+  const serviceSelect = $('#f-service');
+  $$('[data-service]').forEach(a => a.addEventListener('click', () => {
+    const v = a.dataset.service;
+    if (Array.from(serviceSelect.options).some(o => o.value === v || o.text === v)) serviceSelect.value = v;
+  }));
+
+  /* ── Форма записи ── */
+  const form = $('#booking-form'), statusBox = $('#form-status'), submitBtn = $('#submit-btn');
+  const fields = {
+    name:    { el: $('#f-name'),    err: $('#err-name') },
+    phone:   { el: $('#f-phone'),   err: $('#err-phone') },
+    consent: { el: $('#f-consent'), err: $('#err-consent') }
+  };
+
+  const validators = {
+    name(v) {
+      v = v.trim();
+      if (!v) return 'Укажите имя.';
+      if (!/^[\p{L}][\p{L}\s'’.-]{1,59}$/u.test(v)) return 'Введите имя буквами, не короче двух символов.';
+      return '';
+    },
+    phone(v) {
+      const d = v.replace(/\D/g, '');
+      if (!d) return 'Укажите номер телефона.';
+      if (!(d.length === 10 || (d.length === 11 && (d[0] === '7' || d[0] === '8')))) return 'Введите номер полностью, например +7 900 123-45-67.';
+      return '';
+    },
+    consent(_, el) { return el.checked ? '' : 'Для отправки необходимо согласие на обработку данных.'; }
+  };
+
+  function setFieldError(key, msg) {
+    const { el, err } = fields[key];
+    if (msg) { err.textContent = msg; err.hidden = false; el.setAttribute('aria-invalid', 'true'); }
+    else { err.textContent = ''; err.hidden = true; el.removeAttribute('aria-invalid'); }
+  }
+  function validateAll() {
+    let firstBad = null;
+    for (const key of Object.keys(fields)) {
+      const { el } = fields[key];
+      const msg = validators[key](el.value, el);
+      setFieldError(key, msg);
+      if (msg && !firstBad) firstBad = el;
+    }
+    return firstBad;
+  }
+  Object.keys(fields).forEach(key => {
+    const { el } = fields[key];
+    const recheck = () => { if (el.getAttribute('aria-invalid') === 'true') setFieldError(key, validators[key](el.value, el)); };
+    el.addEventListener('input', recheck);
+    el.addEventListener('change', recheck);
+  });
+
+  function showStatus(type, text) {
+    statusBox.className = 'form-status mt-5 ' + type;
+    statusBox.textContent = text;
+    statusBox.hidden = false;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    statusBox.hidden = true;
+
+    const bad = validateAll();
+    if (bad) { showStatus('error', 'Проверьте выделенные поля.'); bad.focus(); return; }
+
+    // Ловушка для ботов: тихо прерываем
+    if (form.elements.website && form.elements.website.value) return;
+
+    // Обработчик не подключён: ничего не отправляем и честно об этом говорим. Данные остаются в форме.
+    if (!SITE_CONFIG.formEndpoint) {
+      showStatus('info', 'Онлайн-запись пока не подключена, поэтому заявка не отправлена. Свяжитесь с клиникой по контактам на этой странице.');
+      statusBox.focus();
+      return;
+    }
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true; submitBtn.setAttribute('aria-busy', 'true'); submitBtn.textContent = 'Отправляем…';
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      const res = await fetch(SITE_CONFIG.formEndpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+        signal: ctrl.signal
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      // Успех подтверждён сервером — только теперь очищаем форму и сообщаем об отправке
+      form.reset();
+      Object.keys(fields).forEach(k => setFieldError(k, ''));
+      showStatus('success', 'Заявка отправлена. Мы свяжемся с вами для подтверждения записи.');
+    } catch (err) {
+      showStatus('error', 'Не удалось отправить заявку. Ваши данные сохранены в форме — попробуйте ещё раз или свяжитесь с клиникой по контактам на этой странице.');
+    } finally {
+      clearTimeout(timer);
+      submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); submitBtn.textContent = originalLabel;
+      statusBox.focus();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
