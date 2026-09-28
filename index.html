@@ -1208,4 +1208,94 @@
     name(v) {
       v = v.trim();
       if (!v) return 'Укажите имя.';
-      if (!/^[\p{L}][\p{L}\s'’.-]{1,59}$/u.test(v)) return 'Введите имя буквами, не коро
+      if (!/^[\p{L}][\p{L}\s'’.-]{1,59}$/u.test(v)) return 'Введите имя буквами, не короче двух символов.';
+      return '';
+    },
+    phone(v) {
+      const d = v.replace(/\D/g, '');
+      if (!d) return 'Укажите номер телефона.';
+      if (!(d.length === 10 || (d.length === 11 && (d[0] === '7' || d[0] === '8')))) return 'Введите номер полностью, например +7 900 123-45-67.';
+      return '';
+    },
+    consent(_, el) { return el.checked ? '' : 'Для отправки необходимо согласие на обработку данных.'; }
+  };
+
+  function setFieldError(key, msg) {
+    const { el, err } = fields[key];
+    if (msg) { err.textContent = msg; err.hidden = false; el.setAttribute('aria-invalid', 'true'); }
+    else { err.textContent = ''; err.hidden = true; el.removeAttribute('aria-invalid'); }
+  }
+  function validateAll() {
+    let firstBad = null;
+    for (const key of Object.keys(fields)) {
+      const { el } = fields[key];
+      const msg = validators[key](el.value, el);
+      setFieldError(key, msg);
+      if (msg && !firstBad) firstBad = el;
+    }
+    return firstBad;
+  }
+  Object.keys(fields).forEach(key => {
+    const { el } = fields[key];
+    const recheck = () => { if (el.getAttribute('aria-invalid') === 'true') setFieldError(key, validators[key](el.value, el)); };
+    el.addEventListener('input', recheck);
+    el.addEventListener('change', recheck);
+  });
+
+  function showStatus(type, text) {
+    statusBox.className = 'form-status mt-5 ' + type;
+    statusBox.textContent = text;
+    statusBox.hidden = false;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    statusBox.hidden = true;
+
+    const bad = validateAll();
+    if (bad) { showStatus('error', 'Проверьте выделенные поля.'); bad.focus(); return; }
+
+    // Ловушка для ботов: тихо прерываем
+    if (form.elements.website && form.elements.website.value) return;
+
+    // Обработчик не подключён: ничего не отправляем и честно об этом говорим. Данные остаются в форме.
+    if (!SITE_CONFIG.formEndpoint) {
+      showStatus('info', 'Онлайн-запись пока не подключена, поэтому заявка не отправлена. Свяжитесь с клиникой по контактам на этой странице.');
+      statusBox.focus();
+      return;
+    }
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true; submitBtn.setAttribute('aria-busy', 'true'); submitBtn.textContent = 'Отправляем…';
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      const res = await fetch(SITE_CONFIG.formEndpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+        signal: ctrl.signal
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      // Успех подтверждён сервером — только теперь очищаем форму и сообщаем об отправке
+      form.reset();
+      Object.keys(fields).forEach(k => setFieldError(k, ''));
+      showStatus('success', 'Заявка отправлена. Мы свяжемся с вами для подтверждения записи.');
+    } catch (err) {
+      showStatus('error', 'Не удалось отправить заявку. Ваши данные сохранены в форме — попробуйте ещё раз или свяжитесь с клиникой по контактам на этой странице.');
+    } finally {
+      clearTimeout(timer);
+      submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); submitBtn.textContent = originalLabel;
+      statusBox.focus();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
+
+
+
+
+
